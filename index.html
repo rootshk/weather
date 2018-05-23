@@ -105,8 +105,8 @@
         },
         created: function () {
             var self = this;
-            axios.get('http://aliyun.roothk.top:7700/query?ip=115.28.85.235', {
-                ip: '115.28.85.235'
+            axios.get('http://aliyun.roothk.top:7700/query?city=番禺区', {
+                // ip: '115.28.85.235'
             }).then(function (response) {
                 console.log(response.data);
                 self.nice = response.data.result;
