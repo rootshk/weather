@@ -24,8 +24,8 @@
     </div>
 </nav>
 <!--主要信息概览-->
-<div class="row" id="weather">
-    <div class="col s12 m12 l12">
+<div class="row">
+    <div class="col s12 m12 l12" id="weather">
         <div class="card small">
             <div class="card-image waves-effect waves-block waves-light">
                 <img class="activator" src="img/bg.png">
@@ -95,19 +95,13 @@
 </div>
 
 <script type="application/javascript">
+    
+
     var app2 = new Vue({
         el: '#weather',
         data: {
             //基本信息result
-            nice: {},
-            //生活指数index
-            lifeIndex:{},
-            //按每天早晚
-            daily:{},
-            //当天各种信息
-            todayAqi:{},
-            //当天各时段信息
-            todayhourly:{}
+            nice: {}
         },
         created: function () {
             var self = this;
@@ -116,10 +110,6 @@
             }).then(function (response) {
                 console.log(response.data);
                 self.nice = response.data.result;
-                self.lifeIndex = response.data.result.index;
-                self.daily = response.data.result.daily;
-                self.todayAqi = response.data.result.api;
-                self.todayhourly = response.data.result.hourly;
             }).catch(function (error) {
                 console.log(error);
             })
