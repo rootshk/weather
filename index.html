@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>test</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="format-detection" content="telephone=no">
+    <link href="https://fonts.loli.net/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
+
+    <script src="https://cdnjs.loli.net/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+<body class="#f5f5f5 grey lighten-4">
+<!--header-->
+<nav>
+    <div class="nav-wrapper #e57373 red lighten-2">
+        <a class="brand-logo"><h5 class="truncate">test</h5></a>
+        <ul>
+            <li><a href="javascript:"><i class="material-icons">cloud</i></a></li>
+        </ul>
+    </div>
+</nav>
+<!--主要信息概览-->
+<div class="row" id="weather">
+    <div class="col s12 m12 l12">
+        <div class="card small">
+            <div class="card-image waves-effect waves-block waves-light">
+                <img class="activator" src="img/bg.png">
+            </div>
+            <div class="card-content">
+                <span class="card-title activator grey-text text-darken-4">
+                    {{ nice.city }} - {{ nice.weather }} {{ nice.temp }}°&nbsp;&nbsp;&nbsp;&nbsp;{{ nice.week}}
+                    <i class="material-icons right">more_vert</i>
+                </span>
+                <p>日期 {{ nice.date }}&nbsp;&nbsp;
+                    气温 {{ nice.templow }}° - {{ nice.temphigh }}°&nbsp;&nbsp;
+                    湿度 {{ nice.humidity }}%
+                </p>
+            </div>
+            <div class="card-reveal">
+                <span class="card-title grey-text text-darken-4">{{ nice.city }}<i class="material-icons right">close</i></span>
+                <p>当前气温: {{ nice.temp }}°</p>
+                <p>最低气温: {{ nice.templow }}°</p>
+                <p>最高气温: {{ nice.temphigh }}°</p>
+                <p>天气: {{ nice.weather }}</p>
+                <p>建议采取的措施: {{ nice.aqi.aqiinfo.measure }}</p>
+                <p>对健康的影响: {{ nice.aqi.aqiinfo.affect }}</p>
+                <hr>
+                <p>风向: {{ nice.winddirect }}</p>
+                <p>风速: {{ nice.windspeed }}</p>
+                <p>风级: {{ nice.windpower }}</p>
+                <p>湿度: {{ nice.humidity }}%</p>
+                <p>气压: {{ nice.pressure }}KPa</p>
+                <hr>
+                <p>星期: {{ nice.week }}</p>
+                <p>日期: {{ nice.date }}</p>
+                <p>空气质量: {{ nice.aqi.quality }}</p>
+                <p>首要污染物: {{ nice.aqi.primarypollutant }}</p>
+                <hr>
+                <p>一氧化碳指数: {{ nice.aqi.ico }}</p>
+                <p>一氧化碳1小时平均: {{ nice.aqi.co }}mg/m³</p>
+                <p>一氧化碳24小时平均: {{ nice.aqi.co24 }}mg/m³</p>
+                <hr>
+                <p>二氧化碳一小时平均: {{ nice.aqi.no2 }}mg/m³</p>
+                <p>二氧化碳二十四小时平均: {{ nice.aqi.no224 }}mg/m³</p>
+                <hr>
+                <p>二氧化硫指数: {{ nice.aqi.iso2 }}</p>
+                <p>二氧化硫一小时平均: {{ nice.aqi.so2 }}mg/m³</p>
+                <p>二氧化硫二十四小时平均: {{ nice.aqi.so224 }}mg/m³</p>
+                <hr>
+                <p>二氧化氮指数: {{ nice.aqi.ino2 }}</p>
+                <hr>
+                <p>臭氧指数: {{ nice.aqi.io3 }}</p>
+                <p>臭氧八小时指数: {{ nice.aqi.io38 }}mg/m³</p>
+                <p>臭氧一小时平均: {{ nice.aqi.o3 }}mg/m³</p>
+                <p>臭氧八小时平均: {{ nice.aqi.o38 }}mg/m³</p>
+                <p>臭氧二十四小时平均: {{ nice.aqi.o324 }}mg/m³</p>
+                <hr>
+                <p>PM2.5指数: {{ nice.aqi.ipm2_5 }}</p>
+                <p>PM2.5一小时平均: {{ nice.aqi.pm2_5 }}mg/m³</p>
+                <p>PM2.5二十四小时平均: {{ nice.aqi.pm2_524 }}mg/m³</p>
+                <hr>
+                <p>PM10指数: {{ nice.aqi.ipm10 }}</p>
+                <p>PM10一小时平均: {{ nice.aqi.pm10 }}mg/m³</p>
+                <p>PM10二十四小时平均: {{ nice.aqi.pm1024 }}mg/m³</p>
+                <hr>
+                <p>更新时间: {{ nice.updatetime }}</p>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="application/javascript">
+    var app2 = new Vue({
+        el: '#weather',
+        data: {
+            //基本信息result
+            nice: {},
+            //生活指数index
+            lifeIndex:{},
+            //按每天早晚
+            daily:{},
+            //当天各种信息
+            todayAqi:{},
+            //当天各时段信息
+            todayhourly:{}
+        },
+        created: function () {
+            var self = this;
+            axios.get('http://local.roothk.top:7700/query?ip=115.28.85.235', {
+                ip: '115.28.85.235'
+            }).then(function (response) {
+                console.log(response.data);
+                self.nice = response.data.result;
+                self.lifeIndex = response.data.result.index;
+                self.daily = response.data.result.daily;
+                self.todayAqi = response.data.result.api;
+                self.todayhourly = response.data.result.hourly;
+            }).catch(function (error) {
+                console.log(error);
+            })
+        }
+    })
+</script>
+</body>
+</html>
