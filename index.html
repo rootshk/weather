@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:v-bind="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <title>test</title>
+    <title>Test</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <meta name="format-detection" content="telephone=no">
@@ -16,105 +16,212 @@
 <body class="#f5f5f5 grey lighten-4">
 <!--header-->
 <nav>
-    <div class="nav-wrapper #e57373 red lighten-2">
-        <a class="brand-logo"><h5 class="truncate">test</h5></a>
-        <ul>
-            <li><a href="javascript:"><i class="material-icons">cloud</i></a></li>
+    <div class="nav-wrapper">
+        <a href="#!" class="brand-logo">Test</a>
+        <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+        <ul class="right hide-on-med-and-down">
+            <!--有波纹按钮-->
+            <li><a href="#localWeather">当地天气预报</a></li>
+            <li><a href="#myCityList">我的城市列表</a></li>
+            <li><a href="#editCityList">编辑城市列表</a></li>
         </ul>
     </div>
 </nav>
-<!--主要信息概览-->
-<div class="row">
-    <div class="col s12 m12 l12" id="weather">
-        <div class="card small">
-            <div class="card-image waves-effect waves-block waves-light">
-                <img class="activator" src="img/bg.png">
-            </div>
-            <div class="card-content">
-                <span class="card-title activator grey-text text-darken-4">
-                    {{ nice.city }} - {{ nice.weather }} {{ nice.temp }}°&nbsp;&nbsp;&nbsp;&nbsp;{{ nice.week}}
-                    <i class="material-icons right">more_vert</i>
-                </span>
-                <p>日期 {{ nice.date }}&nbsp;&nbsp;
-                    气温 {{ nice.templow }}° - {{ nice.temphigh }}°&nbsp;&nbsp;
-                    湿度 {{ nice.humidity }}%
-                </p>
-            </div>
-            <div class="card-reveal">
-                <span class="card-title grey-text text-darken-4">{{ nice.city }}<i class="material-icons right">close</i></span>
-                <p>当前气温: {{ nice.temp }}°</p>
-                <p>最低气温: {{ nice.templow }}°</p>
-                <p>最高气温: {{ nice.temphigh }}°</p>
-                <p>天气: {{ nice.weather }}</p>
-                <p>建议采取的措施: {{ nice.aqi.aqiinfo.measure }}</p>
-                <p>对健康的影响: {{ nice.aqi.aqiinfo.affect }}</p>
-                <hr>
-                <p>风向: {{ nice.winddirect }}</p>
-                <p>风速: {{ nice.windspeed }}</p>
-                <p>风级: {{ nice.windpower }}</p>
-                <p>湿度: {{ nice.humidity }}%</p>
-                <p>气压: {{ nice.pressure }}KPa</p>
-                <hr>
-                <p>星期: {{ nice.week }}</p>
-                <p>日期: {{ nice.date }}</p>
-                <p>空气质量: {{ nice.aqi.quality }}</p>
-                <p>首要污染物: {{ nice.aqi.primarypollutant }}</p>
-                <hr>
-                <p>一氧化碳指数: {{ nice.aqi.ico }}</p>
-                <p>一氧化碳1小时平均: {{ nice.aqi.co }}mg/m³</p>
-                <p>一氧化碳24小时平均: {{ nice.aqi.co24 }}mg/m³</p>
-                <hr>
-                <p>二氧化碳一小时平均: {{ nice.aqi.no2 }}mg/m³</p>
-                <p>二氧化碳二十四小时平均: {{ nice.aqi.no224 }}mg/m³</p>
-                <hr>
-                <p>二氧化硫指数: {{ nice.aqi.iso2 }}</p>
-                <p>二氧化硫一小时平均: {{ nice.aqi.so2 }}mg/m³</p>
-                <p>二氧化硫二十四小时平均: {{ nice.aqi.so224 }}mg/m³</p>
-                <hr>
-                <p>二氧化氮指数: {{ nice.aqi.ino2 }}</p>
-                <hr>
-                <p>臭氧指数: {{ nice.aqi.io3 }}</p>
-                <p>臭氧八小时指数: {{ nice.aqi.io38 }}mg/m³</p>
-                <p>臭氧一小时平均: {{ nice.aqi.o3 }}mg/m³</p>
-                <p>臭氧八小时平均: {{ nice.aqi.o38 }}mg/m³</p>
-                <p>臭氧二十四小时平均: {{ nice.aqi.o324 }}mg/m³</p>
-                <hr>
-                <p>PM2.5指数: {{ nice.aqi.ipm2_5 }}</p>
-                <p>PM2.5一小时平均: {{ nice.aqi.pm2_5 }}mg/m³</p>
-                <p>PM2.5二十四小时平均: {{ nice.aqi.pm2_524 }}mg/m³</p>
-                <hr>
-                <p>PM10指数: {{ nice.aqi.ipm10 }}</p>
-                <p>PM10一小时平均: {{ nice.aqi.pm10 }}mg/m³</p>
-                <p>PM10二十四小时平均: {{ nice.aqi.pm1024 }}mg/m³</p>
-                <hr>
-                <p>更新时间: {{ nice.updatetime }}</p>
 
+<ul id="slide-out" class="sidenav">
+    <li>
+        <div class="user-view">
+            <div class="background">
+                <img src="../img/bg-header.png">
+            </div>
+            <a href="#user"><img class="circle" src="../img/bg-logo.png"></a>
+            <a href="#name"><span class="white-text name">RootHK</span></a>
+            <a href="#email"><span class="white-text email">hk374790498@gmail.com</span></a>
+        </div>
+    </li>
+    <li><a href="#!"><i class="material-icons">cloud</i>RootHK - 天气预报</a></li>
+    <li>
+        <div class="divider"></div>
+    </li>
+    <!--有波纹按钮-->
+    <li><a class="waves-effect" href="#localWeather">当地天气预报</a></li>
+    <li><a class="waves-effect" href="#myCityList">我的城市列表</a></li>
+    <li><a class="waves-effect" href="#editCityList">编辑城市列表</a></li>
+    <!--下面是不可选-->
+    <li><a class="subheader">-实验室功能-</a></li>
+</ul>
+<p></p>
+<!--主要信息概览-->
+<!--localWeather 当地天气-->
+<div id="localWeather" v-bind:style="{ display: displayOn }" class="container">
+    <div class="row">
+        <div class="col s12 m7">
+            <div class="card">
+                <div class="card-image">
+                    <img src="../img/bg-header.png">
+                    <span class="card-title">{{ local.city }} - {{ local.weather }} {{ local.temp }}°</span>
+                </div>
+                <div class="card-content">
+                    <p>{{ local.week }}&nbsp;&nbsp;{{ local.templow }}° - {{ local.temphigh }}°&nbsp;&nbsp;{{
+                        local.date }}&nbsp;&nbsp;湿度&nbsp;{{ local.humidity }}%</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col s12 m7">
+            <div class="card">
+                <div class="card-image waves-effect waves-block waves-light">
+                    <img class="activator" src="../img/bg-header.png">
+                </div>
+                <div class="card-content">
+                    <span class="card-title activator grey-text text-darken-4">按小时查看<i class="material-icons right">more_vert</i></span>
+                </div>
+                <div class="card-reveal">
+                    <span class="card-title grey-text text-darken-4">按小时查看<i
+                            class="material-icons right">close</i></span>
+                    <ul class="collection">
+                        <li v-for="hour in local.hourly" class="collection-item">
+                            {{ hour.time }}&nbsp;&nbsp;&nbsp;&nbsp;{{ hour.weather }}&nbsp;&nbsp;&nbsp;&nbsp;气温{{
+                            hour.temp }}°
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="col s12 m7">
+            <div class="card-panel teal" v-for="days in local.daily">
+              <span class="white-text">
+                  <h4>{{ days.date }}</h4>
+                    >{{ days.week }},<p>
+                    日出: {{ days.sunrise }},
+                    日落: {{ days.sunset }}
+                    <hr>
+                  <h6>白天</h6>
+                    最高气温: {{ days.day.temphigh }}<p>
+                    风向: {{ days.day.winddirect }}<p>
+                    风级: {{ days.day.windpower }}<p>
+                    天气: {{ days.day.weather }}
+                    <hr>
+                  <h6>夜间</h6>
+                    最低气温: {{ days.night.templow }}<p>
+                    风向: {{ days.night.winddirect }}<p>
+                    风级: {{ days.night.windpower }}<p>
+                    天气: {{ days.night.weather }}
+              </span>
             </div>
         </div>
     </div>
 </div>
 
+
 <script type="application/javascript">
+    document.addEventListener('DOMContentLoaded', function () {
+        var sidenav = document.querySelectorAll('.sidenav');
+        var sidenavs = M.Sidenav.init(sidenav);
 
+        var collapsible = document.querySelectorAll('.collapsible');
+        var collapsibles = M.Collapsible.init(collapsible);
+    });
 
-    var app2 = new Vue({
-        el: '#weather',
+    //网页初始化
+    window.onload = function () {
+        //更新本地天气
+        localWeather.$root.updataWeather();
+    };
+
+    //获取接口数据的接口
+    var get = new Vue({
         data: {
-            //基本信息result
-            nice: {}
+            weather: {},
+            ip: {}
+        },
+        methods: {
+            //获取IP地址
+            ipData: function () {
+                var self = this;
+                axios.get('http://aliyun.roothk.top:7700/ip').then(function (response) {
+                    self.ip = response.data.data;
+                    localStorage.setItem('local_ip', self.ip);
+                    console.log(self.ip);
+                }).catch(function (error) {
+                    console.log(error);
+                });
+            },
+            //获取天气数据
+            weatherData: function (type, value) {
+                var self = this;
+                axios.get('http://aliyun.roothk.top:7700/query?' + type + '=' + value).then(function (response) {
+                    self.data = response.data.result;
+                }).catch(function (error) {
+                    console.log(error);
+                });
+            }
+        }
+    });
+
+    //当地天气信息
+    var localWeather = new Vue({
+        el: '#localWeather',
+        data: {
+            displayOn: 'none',
+            local: ''
+        },
+        methods: {
+            //更新本地天气信息
+            updataWeather: function () {
+                var ip = localStorage.getItem('local_ip');
+                if (ip === undefined || ip === null || ip === '') {
+                    //重新获取IP
+                    get.$root.ipData();
+                    //当接口不可用,开始死循环
+                    this.updataWeather();
+                } else {
+                    var self = this;
+                    //拿到天气数据
+                    self.getWeatherData('ip', ip);
+                    self.displayOn = '';
+                }
+            },
+            //获取天气数据
+            getWeatherData: function (type, value) {
+                var self = this;
+                axios.get('http://aliyun.roothk.top:7700/query?' + type + '=' + value).then(function (response) {
+                    self.local = response.data.result;
+                }).catch(function (error) {
+                    console.log(error);
+                });
+            }
+        }
+    });
+
+    //我的城市列表
+    var myCityList = new Vue({
+        el: '#myCityList',
+        data: {
+            displayOn: 'none'
         },
         created: function () {
-            var self = this;
-            axios.get('http://aliyun.roothk.top:7700/query?city=番禺区', {
-                // ip: '115.28.85.235'
-            }).then(function (response) {
-                console.log(response.data);
-                self.nice = response.data.result;
-            }).catch(function (error) {
-                console.log(error);
-            })
         }
-    })
+    });
+    //编辑城市列表
+    var editCityList = new Vue({
+        el: '#editCityList',
+        data: {
+            displayOn: 'none'
+        },
+        created: function () {
+        }
+    });
+
+    function displayUtils(objcet) {
+        if (objcet.$root.displayOn === 'none') {
+            objcet.$root.displayOn = ''
+        } else {
+            objcet.$root.displayOn = 'none'
+        }
+
+    }
 </script>
 </body>
 </html>
