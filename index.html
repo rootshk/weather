@@ -2,7 +2,7 @@
 <html lang="en" xmlns:v-bind="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <title>Test</title>
+    <title>天气预报</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <meta name="format-detection" content="telephone=no">
@@ -17,7 +17,7 @@
 <!--header-->
 <nav>
     <div class="nav-wrapper">
-        <a href="#!" class="brand-logo">Test</a>
+        <a href="#!" class="brand-logo">天气预报</a>
         <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
         <ul class="right hide-on-med-and-down">
             <!--有波纹按钮-->
@@ -140,7 +140,7 @@
             //获取IP地址
             ipData: function () {
                 var self = this;
-                axios.get('http://aliyun.roothk.top:7700/ip').then(function (response) {
+                axios.get('https://aliyun.roothk.top:7700/ip').then(function (response) {
                     self.ip = response.data.data;
                     localStorage.setItem('local_ip', self.ip);
                     console.log(self.ip);
@@ -151,7 +151,7 @@
             //获取天气数据
             weatherData: function (type, value) {
                 var self = this;
-                axios.get('http://aliyun.roothk.top:7700/query?' + type + '=' + value).then(function (response) {
+                axios.get('https://aliyun.roothk.top:7700/query?' + type + '=' + value).then(function (response) {
                     self.data = response.data.result;
                 }).catch(function (error) {
                     console.log(error);
@@ -186,7 +186,7 @@
             //获取天气数据
             getWeatherData: function (type, value) {
                 var self = this;
-                axios.get('http://aliyun.roothk.top:7700/query?' + type + '=' + value).then(function (response) {
+                axios.get('https://aliyun.roothk.top:7700/query?' + type + '=' + value).then(function (response) {
                     self.local = response.data.result;
                 }).catch(function (error) {
                     console.log(error);
