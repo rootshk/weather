@@ -2,7 +2,7 @@
 <html lang="en" xmlns:v-bind="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <title>Test</title>
+    <title>天气预报</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <meta name="format-detection" content="telephone=no">
@@ -17,7 +17,7 @@
 <!--header-->
 <nav>
     <div class="nav-wrapper">
-        <a href="#!" class="brand-logo">Test</a>
+        <a href="#!" class="brand-logo">天气预报</a>
         <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
         <ul class="right hide-on-med-and-down">
             <!--有波纹按钮-->
@@ -32,9 +32,9 @@
     <li>
         <div class="user-view">
             <div class="background">
-                <img src="../img/bg-header.png">
+                <img src="img/bg-header.png">
             </div>
-            <a href="#user"><img class="circle" src="../img/bg-logo.png"></a>
+            <a href="#user"><img class="circle" src="img/bg-logo.png"></a>
             <a href="#name"><span class="white-text name">RootHK</span></a>
             <a href="#email"><span class="white-text email">hk374790498@gmail.com</span></a>
         </div>
@@ -58,7 +58,7 @@
         <div class="col s12 m7">
             <div class="card">
                 <div class="card-image">
-                    <img src="../img/bg-header.png">
+                    <img src="img/bg-header.png">
                     <span class="card-title">{{ local.city }} - {{ local.weather }} {{ local.temp }}°</span>
                 </div>
                 <div class="card-content">
@@ -71,7 +71,7 @@
         <div class="col s12 m7">
             <div class="card">
                 <div class="card-image waves-effect waves-block waves-light">
-                    <img class="activator" src="../img/bg-header.png">
+                    <img class="activator" src="img/bg-header.png">
                 </div>
                 <div class="card-content">
                     <span class="card-title activator grey-text text-darken-4">按小时查看<i class="material-icons right">more_vert</i></span>
@@ -140,7 +140,7 @@
             //获取IP地址
             ipData: function () {
                 var self = this;
-                axios.get('http://aliyun.roothk.top:7700/ip').then(function (response) {
+                axios.get('https://aliyun.roothk.top:7700/ip').then(function (response) {
                     self.ip = response.data.data;
                     localStorage.setItem('local_ip', self.ip);
                     console.log(self.ip);
@@ -151,7 +151,7 @@
             //获取天气数据
             weatherData: function (type, value) {
                 var self = this;
-                axios.get('http://aliyun.roothk.top:7700/query?' + type + '=' + value).then(function (response) {
+                axios.get('https://aliyun.roothk.top:7700/query?' + type + '=' + value).then(function (response) {
                     self.data = response.data.result;
                 }).catch(function (error) {
                     console.log(error);
@@ -186,7 +186,7 @@
             //获取天气数据
             getWeatherData: function (type, value) {
                 var self = this;
-                axios.get('http://aliyun.roothk.top:7700/query?' + type + '=' + value).then(function (response) {
+                axios.get('https://aliyun.roothk.top:7700/query?' + type + '=' + value).then(function (response) {
                     self.local = response.data.result;
                 }).catch(function (error) {
                     console.log(error);
